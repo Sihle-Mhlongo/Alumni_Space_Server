@@ -630,7 +630,7 @@ const insertApplicationSQL = `INSERT INTO savejob (alumni_id, job_title, job_des
 
 //select all saved jobs
 router.get('/api/alumni', (req, res) => {
-  const query = `SELECT  a.alumni_id, a.name, a.surname, j.Organisation, j.job_title as job_applied_for, j.job_description, j.date_posted, j.deadline, j.experience as job_experience, j.required_Skills, j.salary, s.account_id, s.job_title as saved_job_title, s.job_description as saved_job_description, s.application_date FROM Tut_Alumni a LEFT JOIN JobListing j ON a.account_id = j.account_id LEFT JOIN savejob s ON a.account_id = s.account_id`;
+  const query = `SELECT  a.alumni_id, a.name, a.surname,   s.alumni_id, s.job_title as saved_job_title, s.job_description as saved_job_description, s.application_date FROM Tut_Alumni a  LEFT JOIN savejob s ON a.account_id = s.alumni_id`;
 
   client.query(query, (err, result) => {
     if (err) {
