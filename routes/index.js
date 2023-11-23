@@ -649,6 +649,8 @@ router.get('/api/alumni', (req, res) => {
 
 
 
+
+
 //Add Event
 router.post('/api/event', upload.single('file'), function (req, res) {
   var event_title = req.body.event_title;
