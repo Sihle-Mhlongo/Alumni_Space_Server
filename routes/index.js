@@ -640,15 +640,11 @@ router.get('/api/alumni', (req, res) => {
       if (result && result.length > 0) {
         res.status(200).json({ jobs: result });
       } else {
-        res.status(404).json({ message: 'No saved jobs found.' });
+        res.status(404).json({ message: 'No saved jobs found in daabase.' });
       }
     }
   });
 });
-
-
-
-
 
 
 //Add Event
