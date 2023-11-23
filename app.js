@@ -21,7 +21,7 @@ const myNetworkRoute = require("./routes/my-network");
 //const adminRoute = require("./routes/admin");
 
 app.use("/", indexRoute);
-app.use("/network", myNetworkRoute);
+//app.use("/network", myNetworkRoute);
 //app.use("/admin", adminRoute);
 
 // Start the server

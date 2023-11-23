@@ -1,4 +1,4 @@
-const app = require('express')();
+/*const app = require('express')();
 const httpServer = require('http').createServer(app);
 const io = require('socket.io')(httpServer, {
   cors: { origin: '*' }
@@ -28,7 +28,7 @@ io.on('connection', (socket) => {
       // Perform your database operations using the 'connection' object
       var values = [message.text, message.date, message.sender, message.room]
       var sqlInsert = "INSERT INTO `test`.`message` (`text`, `date`, `sender`, `room`) VALUES (?,?,?,?);"
-      var sqlSelect = "SELECT text,date,sender,room FROM `alumni-space-db`.`message`;"
+      var sqlSelect = "SELECT text,date,sender,room FROM `test`.`message`;"
       connection.query(sqlInsert, values, (queryError, results) => {
         connection.release(); // Release the connection back to the pool
 
@@ -53,7 +53,7 @@ io.on('connection', (socket) => {
 
       // Perform your database operations using the 'connection' object
       var values = [post.user_name, post.user_postion, post.institution, post.post_time, post.text_message,]
-      var sqlInsert = "INSERT INTO `alumni-space-db`.`post` (`user_name`, `user_postion`, `institution`, `post_time`,`text_message`) VALUES (?,?,?,?,?);"
+      var sqlInsert = "INSERT INTO `test`.`post` (`user_name`, `user_postion`, `institution`, `post_time`,`text_message`) VALUES (?,?,?,?,?);"
 
       connection.query(sqlInsert, values, (queryError, results) => {
         connection.release(); // Release the connection back to the pool
@@ -80,7 +80,7 @@ io.on('connection', (socket) => {
 
       // Perform your database operations using the 'connection' object
       var values = [group.name, group.description, group.participant, group.role]
-      var sqlInsert = "INSERT INTO `alumni-space-db`.`groups` ( `name`, `description`, `participant` ,`role`) VALUES (?,?,?,?);"
+      var sqlInsert = "INSERT INTO `test`.`groups` ( `name`, `description`, `participant` ,`role`) VALUES (?,?,?,?);"
 
       connection.query(sqlInsert, values, (queryError, results) => {
         connection.release(); // Release the connection back to the pool
@@ -109,7 +109,7 @@ io.on('connection', (socket) => {
         console.error('Error connecting to the database:', err);
         return;
       }
-      var sqlSelect = "SELECT text,date,sender,room FROM `alumni-space-db`.`message` Where room = ?;"
+      var sqlSelect = "SELECT text,date,sender,room FROM `test`.`message` Where room = ?;"
       connection.query(sqlSelect, room, (queryError, results) => {
         connection.release(); // Release the connection back to the pool
         const msgList = [];
@@ -129,12 +129,12 @@ io.on('connection', (socket) => {
 
   });
   //send old posst
-  /*database.getConnection((err, connection) => {
+  database.getConnection((err, connection) => {
     if (err) {
       console.error('Error connecting to the database:', err);
       return;
     }
-    var sqlSelect = "SELECT user_name,user_postion,institution,post_time,text_message FROM `alumni-space-db`.`post`"
+    var sqlSelect = "SELECT user_name,user_postion,institution,post_time,text_message FROM `test`.`post`"
     connection.query(sqlSelect, (queryError, results) => {
       connection.release(); // Release the connection back to the pool
       const msgList = [];
@@ -144,7 +144,7 @@ io.on('connection', (socket) => {
       }
       io.emit('postList', results);
     });
-  });*/
+  });
 
   socket.on('disconnect', () => {
     console.log('a user disconnected!');
@@ -160,7 +160,7 @@ io.on('connection', (socket) => {
 
 
 
-      var sqlSelect = "SELECT * FROM `alumni-space-db`.user;"
+      var sqlSelect = "SELECT * FROM `test`.user;"
       connection.query(sqlSelect, (queryError, results) => {
         connection.release(); // Release the connection back to the pool
 
@@ -198,4 +198,4 @@ io.on('connection', (socket) => {
 
 module.exports = app;
 
-httpServer.listen(port, () => console.log(`listening on port ${port}`));
+httpServer.listen(port, () => console.log(`listening on port ${port}`));*/
