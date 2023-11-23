@@ -488,6 +488,12 @@ router.get('/api/job/:id', (req, res) => {
 
 //selecting all jobs
 
+// const insertApplicationSQL =`
+//   SELECT ta.name, ta.surname, up.*
+//   FROM Tut_Alumni ta
+//   JOIN savejob up ON ta.account_id = up.alumni_id
+// `;
+
 router.get('/api/jobs', (req, res) => {
   // SQL query to select all jobs
   const selectAllJobsSQL = 'SELECT * FROM joblisting';
@@ -604,7 +610,8 @@ router.post('/api/applyjob', (req, res) => {
   // Handle the data on the server as needed
 
   // SQL query to insert into Applications table
-  const insertApplicationSQL = `INSERT INTO savejob (alumni_id, job_title, job_description, application_date) VALUES ( ?, ?, ?, ?)`;
+const insertApplicationSQL = `INSERT INTO savejob (alumni_id, job_title, job_description, application_date) VALUES ( ?, ?, ?, ?)`;
+  
 
   client.query(
     insertApplicationSQL,
@@ -620,6 +627,25 @@ router.post('/api/applyjob', (req, res) => {
     }
   );
 });
+
+//select all saved jobs
+router.get('/api/alumni', (req, res) => {
+  const query = `SELECT  a.alumni_id, a.name, a.surname, j.Organisation, j.job_title as job_applied_for, j.job_description, j.date_posted, j.deadline, j.experience as job_experience, j.required_Skills, j.salary, s.account_id, s.job_title as saved_job_title, s.job_description as saved_job_description, s.application_date FROM Tut_Alumni a LEFT JOIN JobListing j ON a.account_id = j.account_id LEFT JOIN savejob s ON a.account_id = s.account_id`;
+
+  client.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('An error occurred while fetching jobs.');
+    } else {
+      if (result && result.length > 0) {
+        res.status(200).json({ jobs: result });
+      } else {
+        res.status(404).json({ message: 'No saved jobs found.' });
+      }
+    }
+  });
+});
+
 
 
 

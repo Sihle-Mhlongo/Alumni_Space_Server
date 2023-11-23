@@ -37,18 +37,7 @@ CREATE TABLE UserProfile(
     bio VARCHAR(50) NOT NULL,
 );
 
-CREATE TABLE UserProfile(
-    user_id SERIAL PRIMARY KEY,
-    account_id INT REFERENCES Alumni_Space_Account(account_id),
-    location VARCHAR(50) NOT NULL,
-    qualification VARCHAR(100) NOT NULL,
-    employment_status VARCHAR(50) NOT NULL,
-    skills VARCHAR(50) NOT NULL,
-    experience VARCHAR(50) NOT NULL,
-    interest VARCHAR(50) NOT NULL,
-    bio VARCHAR(50) NOT NULL,
-    pic_file VARCHAR(255) NOT NULL
-);
+                             
 
 
 CREATE TABLE UserStory(
@@ -163,7 +152,7 @@ CREATE TABLE Query(
 );
 
 
-CREATE TABLE savejob(
+CREATE TABLE savejob (
     savejob_id SERIAL PRIMARY KEY,
     account_id INT REFERENCES Alumni_Space_Account(account_id),
     job_title VARCHAR(50) NOT NULL,
